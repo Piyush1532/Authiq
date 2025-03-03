@@ -9,7 +9,7 @@ const Login = () => {
  
 const navigate=useNavigate()
 
-const {backendUrl,setIsLoggedin}=useContext(AppContent)
+const {backendUrl,setIsLoggedin,getUserData}=useContext(AppContent)
 
 
   const [state,setState]=useState("Sign Up")
@@ -19,16 +19,18 @@ const {backendUrl,setIsLoggedin}=useContext(AppContent)
   
 
 const onSubmitHandler= async (e)=>{
-try {
   e.preventDefault()
-
+try {
+  
   axios.defaults.withCredentials=true
 
 
   if (state === "Sign Up") {
     const {data}=await axios.post(backendUrl + "/api/auth/register",{name,email,password})
+
     if(data.success){
       setIsLoggedin(true)
+      getUserData()
       navigate("/")
 
     }else{
@@ -38,6 +40,7 @@ try {
     const {data}=await axios.post(backendUrl + "/api/auth/login",{email,password})
     if(data.success){
       setIsLoggedin(true)
+      getUserData()
       navigate("/")
 
     }else{
