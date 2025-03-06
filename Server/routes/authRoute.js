@@ -12,7 +12,7 @@ authRouter.post("/logout",logoutUser)
 authRouter.post("/send-verify-otp",userAuth,sendVerifyOtp)
 authRouter.post("/verify-account",userAuth,vertifyEmail)
 authRouter.get("/is-auth",userAuth,isAuthenticated)
-authRouter.post("/send-rest-otp",sendResetOtp)
+authRouter.post("/send-reset-otp",sendResetOtp)
 authRouter.post("/reset-password",resetPassword)
 
 
